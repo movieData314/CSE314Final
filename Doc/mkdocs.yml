@@ -1,0 +1,7 @@
+site_name: MovieDataset
+nav:
+    - Home: index.md
+    - RDlite: rdlite.md
+    - MovieClean: movieClean.md
+    - dashProject: dashpro.md
+theme: readthedocs
