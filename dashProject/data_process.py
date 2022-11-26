@@ -7,19 +7,17 @@ import plotly
 
 def data2table(data: pd.DataFrame, **kwargs) -> dash_table.DataTable:
     """
+    ### data2table
     Take a dataframe and make a DataTable object that can be shown in the dashboard app
 
-    Parameters
-    ----------
-    data: pd.DataFrame
-        The dataframe object that holds the data to present. The data should not be too large for fast loading.
-    kwargs:
-        Keyword arguments for initializing DataTable objects
+    Arguments:
+        data (pd.DataFrame): The dataframe object that holds the data to present. The data should not be too large for fast loading.
 
-    Returns
-    -------
-    dash_table.DataTable
-        The DataTable object that can be readily incoporated into the dash.html framework
+        kwargs: Keyword arguments for initializing DataTable objects
+
+    Returns:
+        dash_table.DataTable
+            The DataTable object that can be readily incoporated into the dash.html framework
 
     """
     return dash_table.DataTable(
@@ -39,17 +37,15 @@ def data2table(data: pd.DataFrame, **kwargs) -> dash_table.DataTable:
 
 def get_stats(data: pd.DataFrame) -> pd.DataFrame:
     """
+    ### get_stats
     Return a dataframe that provides numerical description of the input data
 
-    Parameters
-    ----------
-    data: pd.DataFrame
-        The data to calculate statistics on
+    Arguments:
+        data (pd.DataFrame): The data to calculate statistics on
 
-    Returns
-    -------
-    pd.DataFrame
-        The basic statistics of the data including quantiles, max, min and correlation
+    Returns:
+        pd.DataFrame
+            The basic statistics of the data including quantiles, max, min and correlation
     """
     temp = data.describe().T.reset_index()
     if "object" not in data.dtypes.values and "bool" not in data.dtypes.values:
@@ -60,33 +56,30 @@ def get_stats(data: pd.DataFrame) -> pd.DataFrame:
 
 def get_statsTable(data: pd.DataFrame) -> dash_table.DataTable:
     """
-    Turn the statistics dataframe to a DataTable object
+    ### get_statsTable
+    Turn the statistics dataframe into a DataTable object
 
-    Parameters:
-    -----------
-    data: pd.DataFrame
-        The data to calculate statistics on
+    Arguments:
+        data (pd.DataFrame): The data to calculate statistics on
 
-    Returns
-    -------
-    dash_table.DataTable
-        The basic statistics of the data including quantiles, max, min and correlation
+    Returns:
+        dash_table.DataTable
+            The basic statistics of the data including quantiles, max, min and correlation
     """
     return data2table(get_stats(data), style_table={"overflowX": "auto"})
 
 
 def get_toyFig() -> plotly.graph_objects.Figure:
     """
+    ### get_toyFig
     Return a placeholder figure
 
-    Parameters
-    ----------
-    None
+    Arguments:
+        None
 
-    Returns
-    -------
-    plotly.graph_objects.Figure
-        A toy figure used as a placeholder in the app layout
+    Returns:
+        plotly.graph_objects.Figure
+            A toy figure used as a placeholder in the app layout
     """
     x = np.random.randint(0, 100, size=20)
     y = np.random.randint(0, 100, size=20)

@@ -4,20 +4,16 @@ import pandas as pd
 
 def agg(*features, peek=False) -> pd.DataFrame:
     """
-    Return a dataframe containing the features of interest
+    Return a dataframe containing the features of interest.
 
-    Parameters
-    ----------
-    features: strs (variable size)
-        names of the features to retrieve
-    peek: bool, optional
-        A boolean with a default of False. If it is set to true, the function only retrieve the first 50 rows
-        of each selected feature to save memory.
+    Arguments:
+        features (strs): Names of the features to retrieve
+        peek (bool): A boolean default to False. \n
+            If true, it returns the first 50 entries from each feature.
 
-    Returns
-    -------
-    pd.DataFrame
-        A dataframe that contains the features of interest
+    Returns:
+        pd.DataFrame
+            A dataframe that contains the features of interest
     """
     result = None
     filez = list(set([mapping[x] for x in features]))

@@ -5,22 +5,21 @@ import pandas as pd
 
 def append_id(df: pd.DataFrame, ID: int, id_col: str) -> pd.DataFrame:
     """
-    Add a new column "id" to the give dataframe. Note that every entry will have the same id.
-    Used as a helper fucntion.
+    append_id
+    ---------
+    Add a new column named "id" , which has the same value as `ID`, to the given dataframe.
 
-    Parameters
-    ----------
-    df: pd.DataFrame
-        The dataframe to add ids to
-    ID: int
-        The id for every entry
-    id_col: str
-        The name for the new id column
+    Note:
+        Used as a helper fucntion to easily add ids.
 
-    Returns
-    -------
-    pd.DataFrame
-        The original dataframe with id added
+    Arguments:
+        df (pd.DataFrame): The dataframe to add ids to
+        ID (int): The id for every entry
+        id_col (str): The name for the new id column
+
+    Returns:
+        pd.DataFrame
+            The original dataframe with id added
     """
     df[id_col] = [ID] * df.shape[0]
     return df
@@ -28,22 +27,27 @@ def append_id(df: pd.DataFrame, ID: int, id_col: str) -> pd.DataFrame:
 
 def json2df(df: pd.DataFrame, col_name: str, id_col: str) -> pd.DataFrame:
     """
+    ## json2df
+    Return a new dataframe of data that were stored in json-style strings.
+
     Extract all json-style data in a dataframe cell and return those data as a single dataframe with another column in the
     original dataframe as the index of the new dataframe
 
-    Parameters:
-    -----------
-    df: pd.DataFrame
-        The dataframe that contains a column that has json objects
-    col_name: str
-        The name of the column that contains json objects
-    id_col: str
-        The name of the column that will be used as the index of the new dataframe
+    Arguments:
+        df (pd.DataFrame): The dataframe that contains a column \n
+            that has json-style strings
+        col_name (str): The column that contains json objects
+        id_col (str): The column that will be used as the index of \n
+            the new dataframe
+
+    Note:
+        For large dataframe, this function could be expensive in terms of time and memroy.
+        Also watch out for columns with mixed types.
 
     Returns:
-    --------
-    pd.DataFrame
-        The new dataframe made from the data previously stored in json-format strings
+        pd.DataFrame
+            The new dataframe made from the data previously \n
+            stored in json-format strings
     """
     jsons = df[col_name].apply(ast.literal_eval)
     jsons["id"] = df[id_col]
@@ -55,24 +59,21 @@ def json2df(df: pd.DataFrame, col_name: str, id_col: str) -> pd.DataFrame:
 
 def json2series(df: pd.DataFrame, col: str, key: str, id: str) -> pd.Series:
     """
+    ## json2series
+    Return a new `Series` that contain the interested data previously stored in json-style strings.
+
     Extract a single key-value pair in the json-style data that are stored in a column into a pd.Series object,
     while ignoring other key-value pairs.
 
-    Parameters:
-    -----------
-    df: pd.DataFrame
-        The dataframe that contains the column of json-style data
-    col: str
-        The name of the column that contains json-style data
-    key: str
-        The key in the json that maps to the value of interest
-    id: str
-        The name of the column in the original dataframe to be used as the index
+    Arguments:
+        df (pd.DataFrame): The dataframe that contains the column of json-style data
+        col (str):  The column that contains json-style data
+        key (str): The key in the json that maps to the value of interest
+        id (str): The name of the column in the original dataframe to be used as the index
 
     Returns:
-    --------
-    pd.Series
-        The Series made from the key-value pair in the jsons
+        pd.Series
+            The Series made from the key-value pair in the jsons
 
     """
     df = copy.deepcopy(df).set_index(id)
@@ -94,38 +95,32 @@ def json2series(df: pd.DataFrame, col: str, key: str, id: str) -> pd.Series:
 
 def split_table(df: pd.DataFrame, key: str, cols: list) -> pd.DataFrame:
     """
+    ## split_table
     Return a sub-dataframe of interested data and set a column as index.
 
-    Parameters
-    -----------
-    df: pd.DataFrame
-        The dataframe that contains the original data
-    key: str
-        The name of the column to use as the index
-    cols: list
-        List of strs that are names of the columns of interest
+    Arguments:
+        df (pd.DataFrame): The dataframe that contains the original data
+        key (str): The name of the column to use as the index
+        cols (list): List of strs that are names of the columns of interest
 
-    Returns
-    --------
-    pd.DataFrame
-        The new sub-dataframe
+    Returns:
+        pd.DataFrame
+            The new sub-dataframe
     """
     return df[cols + [key]].set_index(key)
 
 
 def id2int(df: pd.DataFrame) -> pd.DataFrame:
     """
+    ## id2int
     Convert dtype of the "id" column to int
 
-    Parameters
-    ----------
-    df: pd.DataFrame
-        The dataframe to do the conversion on
+    Arguments:
+        df (pd.DataFrame): The dataframe to do the conversion on
 
-    Returns
-    -------
-    pd.DataFrame
-        The dataframe with index's dtype converted
+    Returns:
+        pd.DataFrame
+            The dataframe with index's dtype converted
     """
     temp = df.reset_index()
     temp["id"] = temp["id"].apply(lambda x: int(x) if "-" not in x else None)

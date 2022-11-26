@@ -7,6 +7,7 @@ import plotly
 
 # Path to local modules
 sys.path.append("/home/themaster/workspace/cse314final/")
+
 # Local modules
 import data_process as dp
 from RDlite import all_features
@@ -15,18 +16,18 @@ from RDlite import accessor
 
 def default_graph_factory(toy_fig: plotly.graph_objects.Figure) -> html:
     """
-    Deprecated: The default html layout for a simple dashboard app.
-    It serves as a simple example to understand the nature of dashboard.
+    ### default_graph_factory
+    Return a simple example used as the layout of the dashboard app.
 
-    Parameters
-    ----------
-    toy_fig: plotly.graph_objects.Figure
-        A default figure to display, which serves as a placeholder
+    Note:
+        This function is deprecated. The default html layout for a simple dashboard app.
 
-    Returns
-    -------
-    html
-        A Dash.html object which is the basic layout of the dashbaord app
+    Arguments:
+        toy_fig (plotly.graph_objects.Figure): A default figure to display, which serves as a placeholder
+
+    Returns:
+        html
+            A Dash.html object which is the basic layout of the dashbaord app
     """
     return html.Div(
         [
@@ -44,20 +45,20 @@ def default_graph_factory(toy_fig: plotly.graph_objects.Figure) -> html:
     )
 
 
-def advanced_graph_factory(app: Dash):
+def advanced_graph_factory(app: Dash) -> html:
     """
+    ### advanced_graph_factory
+    Return a layout for the dashboard app.
+
     This function returns a dashboard layout for basic data exploration, statistics analysis and
     visualization.
 
-    Parameters
-    ----------
-    app: dash.Dash
-        The actual dash board object itself. It is used to implement callback fucntions.
+    Arguments:
+        app (dash.Dash): The actual dash board object itself. It is used to implement callback fucntions.
 
-    Returns
-    -------
-    html
-        A Dash.html object which is the basic layout of the dashbaord app
+    Returns:
+        html
+            A Dash.html object which is the basic layout of the dashbaord app
     """
 
     data = accessor.agg(*all_features, peek=True)
