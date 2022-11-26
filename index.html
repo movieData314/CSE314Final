@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>MovieDataset</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Home";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> MovieDataset
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href=".">Home</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#project-layout">Project layout</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installation-instructions">Installation Instructions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#314final_tovicleanipynb">314Final_ToviClean.ipynb</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cse314moduletesting">CSE314ModuleTesting</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bdd-style-documentation">BDD-style documentation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#contributing-guide">Contributing Guide</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="rdlite/">RDlite</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="movieClean/">MovieClean</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="dashpro/">dashProject</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">MovieDataset</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="welcome-to-the-moviedataset">Welcome to The MovieDataset</h1>
+<p>This project aims to investigate various properties and relations in the context of past movies across languages and countries. There are more than 14 features and tens of thousands of data entries. For our group, we are primarily interested in which genres of movies are the most profitable. </p>
+<p>To help with our analysis, we develop several modules to do cleaning, normalization, and visualization. This documentation is provided to get rid of the fuss and let external clients start their analysis right away.</p>
+<h2 id="project-layout">Project layout</h2>
+<pre><code>docs/
+    dashProject/                # The dashboard app to visualize the data in an interactive way
+        data_process.py         # Helper functions to convert dataframe to dashboard objects
+        tovi_dashboard.py       # The dashboard app
+        db_UI.py                # The package of dashboard UI's
+    Data/                       # The directory for clean data
+        actors.csv
+        clean_movie.csv
+        collections.csv
+        companies.csv
+        countries.csv
+        genres.csv
+        keywords.csv
+        languages.csv
+        movies_names.csv
+        ratings.csv
+    Doc/                        # Folder for documentations
+        ...
+    MovieClean/                 # Installable python module for cleaning and normalizing dataset
+        MovieClean/ 
+            norm.py
+            ...
+        ...
+    RDlite/                     # A lightweight relational database
+        accessor.py
+        ...
+    314Final_ToviClean.ipynb    # A jupyter notebook to demonstrate the cleaning process
+    CSE314ModuleTesting.ipynb   # A jupyter notebook to demonstrate usages of RDlite
+    ...                         # Other files
+</code></pre>
+<h2 id="installation-instructions">Installation Instructions</h2>
+<ol>
+<li>
+<p>Pull the project from this github repository.
+    <code>git pull &lt;url&gt;</code></p>
+</li>
+<li>
+<p>Install the MovieClean module
+    <code>pip install -e MovieClean</code></p>
+</li>
+<li>
+<p>Configure the data directory in RDlite.<strong>init</strong>
+    <code>file_path = &lt;actual path to the data&gt;</code></p>
+</li>
+<li>
+<p>Configure the system path variable in db_UI.py
+    <code>sys.path.append('&lt;local_path&gt;/cse314final')</code></p>
+</li>
+</ol>
+<p>After these steps, you should be ready to use the modules within the cse314final folder. </p>
+<p><strong>Notice</strong> that MovieClean module is the only module with setup.py file, which allows you to use it outside this folder, while the other module are intended to be used within this folder. </p>
+<p>To make non-installable modules accessible by external codes, add this line to the script:</p>
+<pre><code>import sys
+sys.path.append(&lt;pathToModule&gt;)
+</code></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="314final_tovicleanipynb">314Final_ToviClean.ipynb</h3>
+<p>This notebook shows how we clean the dataset so that they are in long form and could be merged with "df.join" syntax. </p>
+<p>The primary diffculty is that multiple features store giant json format strings or list of json strings in a single cell, which violates the first normal form. Meanwhile, the fact that they are python strings adds to the difficulty of this task because python uses both single quote and double quote to wrap a string adeptively but python's json parser only recognizes double quotes. Therefore, we used a theoretical tool called the abstract syntax tree to reformat the string. </p>
+<h3 id="cse314moduletesting">CSE314ModuleTesting</h3>
+<p>This notebook shows how to do aggregate on dataframes and retrieve the wanted data.</p>
+<h2 id="bdd-style-documentation">BDD-style documentation</h2>
+<h2 id="contributing-guide">Contributing Guide</h2>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="rdlite/" class="btn btn-neutral float-right" title="RDlite">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="rdlite/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.4.2
+Build Date UTC : 2022-11-26 23:25:04.489998+00:00
+-->

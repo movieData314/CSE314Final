@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>dashProject - MovieDataset</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "dashProject";
+        var mkdocs_page_input_path = "dashpro.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> MovieDataset
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rdlite/">RDlite</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../movieClean/">MovieClean</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">dashProject</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#basic-usage">Basic Usage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#db_ui">db_UI</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dashProject.db_UI.default_graph_factory">dashProject.db_UI.default_graph_factory</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#dashProject.db_UI.default_graph_factory--default_graph_factory">default_graph_factory</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dashProject.db_UI.advanced_graph_factory">dashProject.db_UI.advanced_graph_factory</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#dashProject.db_UI.advanced_graph_factory--advanced_graph_factory">advanced_graph_factory</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data_process">data_process</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dashProject.data_process.data2table">dashProject.data_process.data2table</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#dashProject.data_process.data2table--data2table">data2table</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dashProject.data_process.get_stats">dashProject.data_process.get_stats</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#dashProject.data_process.get_stats--get_stats">get_stats</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dashProject.data_process.get_statsTable">dashProject.data_process.get_statsTable</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#dashProject.data_process.get_statsTable--get_statstable">get_statsTable</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dashProject.data_process.get_toyFig">dashProject.data_process.get_toyFig</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#dashProject.data_process.get_toyFig--get_toyfig">get_toyFig</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">MovieDataset</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>dashProject</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="dashboard-documentation">DashBoard Documentation</h1>
+<p>This is simple dashboard app that do some visualization of the data. It simplifies the EDA process and provides an interactive UI.</p>
+<h2 id="basic-usage">Basic Usage</h2>
+<ol>
+<li>Resolve the dependencies by appending the local path to modules in the same repository with the following code.<code>sys.path.append(&lt;path&gt;)</code></li>
+<li>Navigate to the directory "cse314final/dashProject" and run <code>python tovi_dashboard.py</code>.</li>
+<li>Go to the link prompted in your browser.</li>
+</ol>
+<h2 id="db_ui">db_UI</h2>
+
+
+<div class="doc doc-object doc-function">
+
+
+<a id="dashProject.db_UI.default_graph_factory"></a>
+  <div class="doc doc-contents first">
+  
+      <h4 id="dashProject.db_UI.default_graph_factory--default_graph_factory">default_graph_factory</h4>
+<p>Return a simple example used as the layout of the dashboard app.</p>
+
+<details class="note">
+  <summary>Note</summary>
+  <p>This function is deprecated. The default html layout for a simple dashboard app.</p>
+</details>
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>toy_fig</code></td>
+          <td>
+                <code>plotly.<span title="plotly.graph_objects">graph_objects</span>.<span title="plotly.graph_objects.Figure">Figure</span></code>
+          </td>
+          <td><p>A default figure to display, which serves as a placeholder</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="dash.html">html</span></code>
+          </td>
+          <td><p>html
+A Dash.html object which is the basic layout of the dashbaord app</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<a id="dashProject.db_UI.advanced_graph_factory"></a>
+  <div class="doc doc-contents first">
+  
+      <h4 id="dashProject.db_UI.advanced_graph_factory--advanced_graph_factory">advanced_graph_factory</h4>
+<p>Return a layout for the dashboard app.</p>
+<p>This function returns a dashboard layout for basic data exploration, statistics analysis and
+visualization.</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>app</code></td>
+          <td>
+                <code>dash.<span title="dash.Dash">Dash</span></code>
+          </td>
+          <td><p>The actual dash board object itself. It is used to implement callback fucntions.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="dash.html">html</span></code>
+          </td>
+          <td><p>html
+A Dash.html object which is the basic layout of the dashbaord app</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+</div><h2 id="data_process">data_process</h2>
+
+
+<div class="doc doc-object doc-function">
+
+
+<a id="dashProject.data_process.data2table"></a>
+  <div class="doc doc-contents first">
+  
+      <h4 id="dashProject.data_process.data2table--data2table">data2table</h4>
+<p>Take a dataframe and make a DataTable object that can be shown in the dashboard app</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>data</code></td>
+          <td>
+                <code><span title="pandas">pd</span>.<span title="pandas.DataFrame">DataFrame</span></code>
+          </td>
+          <td><p>The dataframe object that holds the data to present. The data should not be too large for fast loading.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>kwargs</code></td>
+          <td>
+          </td>
+          <td><p>Keyword arguments for initializing DataTable objects</p></td>
+          <td>
+                <code>{}</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="dash.dash_table">dash_table</span>.<span title="dash.dash_table.DataTable">DataTable</span></code>
+          </td>
+          <td><p>dash_table.DataTable
+The DataTable object that can be readily incoporated into the dash.html framework</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<a id="dashProject.data_process.get_stats"></a>
+  <div class="doc doc-contents first">
+  
+      <h4 id="dashProject.data_process.get_stats--get_stats">get_stats</h4>
+<p>Return a dataframe that provides numerical description of the input data</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>data</code></td>
+          <td>
+                <code><span title="pandas">pd</span>.<span title="pandas.DataFrame">DataFrame</span></code>
+          </td>
+          <td><p>The data to calculate statistics on</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="pandas">pd</span>.<span title="pandas.DataFrame">DataFrame</span></code>
+          </td>
+          <td><p>pd.DataFrame
+The basic statistics of the data including quantiles, max, min and correlation</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<a id="dashProject.data_process.get_statsTable"></a>
+  <div class="doc doc-contents first">
+  
+      <h4 id="dashProject.data_process.get_statsTable--get_statstable">get_statsTable</h4>
+<p>Turn the statistics dataframe into a DataTable object</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>data</code></td>
+          <td>
+                <code><span title="pandas">pd</span>.<span title="pandas.DataFrame">DataFrame</span></code>
+          </td>
+          <td><p>The data to calculate statistics on</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="dash.dash_table">dash_table</span>.<span title="dash.dash_table.DataTable">DataTable</span></code>
+          </td>
+          <td><p>dash_table.DataTable
+The basic statistics of the data including quantiles, max, min and correlation</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<a id="dashProject.data_process.get_toyFig"></a>
+  <div class="doc doc-contents first">
+  
+      <h4 id="dashProject.data_process.get_toyFig--get_toyfig">get_toyFig</h4>
+<p>Return a placeholder figure</p>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>plotly.<span title="plotly.graph_objects">graph_objects</span>.<span title="plotly.graph_objects.Figure">Figure</span></code>
+          </td>
+          <td><p>plotly.graph_objects.Figure
+A toy figure used as a placeholder in the app layout</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../movieClean/" class="btn btn-neutral float-left" title="MovieClean"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../movieClean/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
