@@ -1,5 +1,6 @@
 from RDlite import mapping, file_path
 import pandas as pd
+import numpy as np
 
 
 def agg(*features, peek=False) -> pd.DataFrame:
@@ -16,39 +17,11 @@ def agg(*features, peek=False) -> pd.DataFrame:
             A dataframe that contains the features of interest
     """
     result = None
-    filez = list(set([mapping[x] for x in features]))
-
-    for each in filez:
-        if each in ["actors.csv", "movies_names.csv"]:
-            continue
-        to_join = (
-            pd.read_csv(file_path + each, nrows=50)
-            if peek
-            else pd.read_csv(file_path + each)
-        )
+    access_nodes = [mapping[each] for each in features]
+    for node, feature in zip(access_nodes, features):
         if result is None:
-            result = to_join
+            result = (node[feature] if not peek else node.peek(feature)).set_index(node.id)
         else:
-            if "id" in result.columns:
-                result = result.set_index("id").join(to_join.set_index("id"))
-            else:
-                result = result.join(to_join.set_index("id"))
-
-    if any([each in filez for each in ["actors.csv", "movies_names.csv"]]):
-        other = (
-            pd.read_csv(file_path + "actors.csv", nrows=50)
-            if peek
-            else pd.read_csv(file_path + "actors.csv")
-        )
-        to_join = (
-            pd.read_csv(file_path + "movies_names.csv", nrows=50)
-            if peek
-            else pd.read_csv(file_path + "movies_names.csv")
-        )
-        to_join = to_join.join(other.set_index("name"), on="name")
-        if result is None:
-            result = to_join
-        else:
-            result = result.join(to_join.set_index("id"))
-
+            result = result.join((node[feature] if not peek else node.peek(feature)).set_index(node.id), on=node.id)
     return result
+        
