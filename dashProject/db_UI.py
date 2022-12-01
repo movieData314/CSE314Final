@@ -1,5 +1,5 @@
 # External Modules
-from dash import Dash, html, dcc, Input, Output
+from dash import Dash, html, dcc, Input, Output, State
 import dash_bootstrap_components as dbc
 import plotly.express as px
 import sys
@@ -78,9 +78,13 @@ def advanced_graph_factory(app: Dash) -> html:
     default_fig = dp.get_toyFig()
 
     @app.callback(
-        Output("graph", "figure"), Input("xlabel", "value"), Input("ylabel", "value")
+        Output("graph", "figure"),
+        State("xlabel", "value"),
+        State("ylabel", "value"),
+        State("limiter", "value"),
+        Input("submit", "n_clicks"),
     )
-    def update_figure(xlabel_name, ylabel_name):
+    def update_figure(xlabel_name, ylabel_name, range, n_clicks):
         data = accessor.agg(xlabel_name, ylabel_name)
         if data.dtypes[xlabel_name] == "object" or data.dtypes[ylabel_name] == "object":
             cat, other = (
@@ -88,8 +92,16 @@ def advanced_graph_factory(app: Dash) -> html:
                 if data.dtypes[xlabel_name] == "object"
                 else (ylabel_name, xlabel_name)
             )
+            stats = data.groupby(cat).mean().reset_index()
             return px.bar(
-                data_frame=data.groupby(cat).mean().reset_index(), x=cat, y=other
+                data_frame=stats.iloc[
+                    int(stats.shape[0] * range[0] / 100) : int(
+                        stats.shape[0] * range[1] / 100
+                    ),
+                    :,
+                ],
+                x=cat,
+                y=other,
             )
         else:
             return px.scatter(data_frame=data, x=xlabel_name, y=ylabel_name)
@@ -107,7 +119,7 @@ def advanced_graph_factory(app: Dash) -> html:
         [
             dbc.NavbarSimple(
                 children=[
-                    dbc.NavItem(dbc.NavLink("Page 1", href="#")),
+                    dbc.NavItem(dbc.NavLink("Documentation", href="#")),
                     dbc.DropdownMenu(
                         children=[
                             dbc.DropdownMenuItem("More pages", header=True),
@@ -119,16 +131,16 @@ def advanced_graph_factory(app: Dash) -> html:
                         label="More",
                     ),
                 ],
-                brand="NavbarSimple",
+                brand="MovieDataset",
                 brand_href="#",
                 color="primary",
                 dark=True,
             ),
             dbc.Row(
-                id="up-table",
+                id="uppper-table",
                 children=dbc.Col(
                     [table],
-                    style={"background-color": "red"},
+                    style={"background-color": "#F7f7f9"},
                     width={"size": 10, "offset": 1},
                 ),
             ),
@@ -138,44 +150,70 @@ def advanced_graph_factory(app: Dash) -> html:
                     dbc.Col(
                         id="left-col",
                         width={"size": 5, "offset": 1},
+                        style={"background-color": "#F7f7f9"},
                         children=[
+                            html.H2("Data Explorer"),
+                            html.P(
+                                "Explore data by selecting X and Y variable. Use the slider below to limit the percent of data to present. It is recommended when ploting categorical variables."
+                            ),
                             dbc.Row(
                                 [
                                     dbc.Col(
                                         [
                                             dcc.Dropdown(
                                                 variables,
-                                                "Select something",
+                                                "X variable",
                                                 id="xlabel",
                                             )
                                         ],
-                                        width={"size": 2},
+                                        width={"size": 3},
                                     ),
                                     dbc.Col(
                                         [
                                             dcc.Dropdown(
                                                 variables,
-                                                "Select something",
+                                                "Y variable",
                                                 id="ylabel",
                                             )
                                         ],
-                                        width={"size": 2},
+                                        width={"size": 3},
+                                    ),
+                                    dbc.Col(
+                                        [
+                                            html.Button(
+                                                id="submit",
+                                                n_clicks=0,
+                                                children="Submit",
+                                            )
+                                        ],
+                                        width={"size": 3},
                                     ),
                                 ]
                             ),
                             dbc.Row(
-                                id="select_stats",
-                                children=[],
+                                id="slider",
+                                children=[
+                                    dcc.RangeSlider(
+                                        min=0,
+                                        max=100,
+                                        step=5,
+                                        value=[0, 100],
+                                        id="limiter",
+                                    )
+                                ],
                             ),
+                            dbc.Row(id="select_stats", children=[]),
                         ],
                     ),
                     dbc.Col(
                         id="right-col",
                         children=[dcc.Graph(id="graph", figure=default_fig)],
-                        style={"background-color": "blue"},
+                        style={"background-color": "#F7f7f9"},
                         width={"size": 5},
                     ),
                 ],
+                style={"padding-bottom": "30px"},
             ),
-        ]
+        ],
+        style={"background-color": "#E8EFF3", "padding-bottom": "30px"},
     )

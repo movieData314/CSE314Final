@@ -83,4 +83,4 @@ def get_toyFig() -> plotly.graph_objects.Figure:
     """
     x = np.random.randint(0, 100, size=20)
     y = np.random.randint(0, 100, size=20)
-    return px.scatter(x=x, y=y)
+    return px.scatter(x=x, y=y, title="A placeholder figure")
