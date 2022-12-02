@@ -1,8 +1,8 @@
-import glob
-
-file_path = "/home/themaster/workspace/cse314final/Data/"
-
 import pandas as pd
+
+# Use Absolute Path
+FILE_PATH = "/workspaces/CSE314Final/Data/"
+
 
 setup_dict = {
     "companies.csv": ["id"],
@@ -14,7 +14,6 @@ setup_dict = {
     "actors.csv": ["id"],
     "clean_movie.csv": ["id"],
 }
-
 
 class Node:
     path_to_file = None
@@ -28,7 +27,7 @@ class Node:
         self.id = id
 
     def __leq__(self, other):
-        return self.path_to_file < self.path_to_file
+        return self.path_to_file < other.path_to_file
 
     def __getitem__(self, *key):
         return pd.read_csv(self.path_to_file, usecols=[*self.id, *key])
@@ -37,7 +36,7 @@ class Node:
         return pd.read_csv(self.path_to_file, usecols=[*self.id, *key], nrows=50)
 
 
-nodes = [Node(file_path + name, id) for name, id in setup_dict.items()]
+nodes = [Node(FILE_PATH + name, id) for name, id in setup_dict.items()]
 
 all_maps = []
 for node in nodes:

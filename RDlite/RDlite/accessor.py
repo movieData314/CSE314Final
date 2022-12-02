@@ -1,7 +1,7 @@
-from RDlite import mapping, file_path
 import pandas as pd
 import numpy as np
 
+from RDlite import mapping, FILE_PATH
 
 def agg(*features, peek=False) -> pd.DataFrame:
     """

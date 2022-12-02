@@ -6,7 +6,7 @@ import sys
 import plotly
 
 # Path to local modules
-sys.path.append("/home/themaster/workspace/cse314final/")
+sys.path.append("/home/workspaces/CSE314Final/")
 
 # Local modules
 import data_process as dp
