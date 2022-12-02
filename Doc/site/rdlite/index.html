@@ -52,6 +52,12 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#RDlite.accessor.agg">RDlite.accessor.agg</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#node">Node</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#RDlite.node.Node">RDlite.node.Node</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#RDlite.node.Node.peek">peek()</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -166,6 +172,133 @@ A dataframe that contains the features of interest</p></td>
         </tr>
     </tbody>
   </table>
+
+  </div>
+
+</div><h2 id="node">Node</h2>
+
+
+<div class="doc doc-object doc-class">
+
+
+<a id="RDlite.node.Node"></a>
+  <div class="doc doc-contents first">
+
+  
+      <p>The Node class serves as the proxy between the data saved locally 
+and the programs intend to use them. Each physical file is aliased 
+by a Node object.</p>
+
+<details class="data-fields">
+  <summary>Data Fields</summary>
+  <p>path_to_file (str): The local directory to the file.
+id (str): The index column of this specific file.
+features: The features stored.</p>
+</details>
+  <p><strong>Attributes:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>[]operator</code></td>
+          <td>
+          </td>
+          <td><p>Return the selected data in a pandas dataframe</p></td>
+        </tr>
+        <tr>
+          <td><code>peek</code></td>
+          <td>
+                <code><span title="pandas">pd</span>.<span title="pandas.DataFrame">DataFrame</span></code>
+          </td>
+          <td><p>Return the first 50 rows of the selected data</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="RDlite.node.Node.peek" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">peek</span><span class="p">(</span><span class="o">*</span><span class="n">key</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Return the first 50 rows of selected data.</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>key</code></td>
+          <td>
+                <code>strs</code>
+          </td>
+          <td><p>Features of interest in this specifc file</p></td>
+          <td>
+                <code>()</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="pandas">pd</span>.<span title="pandas.DataFrame">DataFrame</span></code>
+          </td>
+          <td><p>pd.DataFrame
+A dataframe contain the selected features plus the index column</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+</div>
+
+
+
+  </div>
 
   </div>
 
