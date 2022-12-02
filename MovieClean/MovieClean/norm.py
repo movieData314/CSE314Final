@@ -1,6 +1,7 @@
 import ast
 import copy
 import pandas as pd
+import numpy as np
 
 
 def append_id(df: pd.DataFrame, ID: int, id_col: str) -> pd.DataFrame:
@@ -126,3 +127,17 @@ def id2int(df: pd.DataFrame) -> pd.DataFrame:
     temp["id"] = temp["id"].apply(lambda x: int(x) if "-" not in x else None)
     temp = temp.dropna().astype({"id": int})
     return temp.set_index("id")
+
+
+def cat_encode(data: pd.DataFrame, col_name: str) -> pd.Series:
+    """ """
+    status = np.array(np.unique(data[col_name]))
+    status_code = np.arange(status.shape[0])
+    status_map = pd.Series({k: v for k, v in zip(status_code, status)})
+    mapping = {v: k for k, v in status_map.items()}
+    data.loc[:, col_name] = data[col_name].apply(lambda x: mapping[x])
+    return status_map.rename(col_name + "_map")
+
+
+def drop_duplicate_index(data: pd.DataFrame) -> pd.DataFrame:
+    return data[~data.index.duplicated()]

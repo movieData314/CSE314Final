@@ -1,11 +1,9 @@
-
 from distutils.core import setup
 
-setup(name='Distutils',
+setup(name='MovieClean',
       version='1.0',
-      description='Python Distribution Utilities',
-      author='Greg Ward',
-      author_email='gward@python.net',
-      url='https://www.python.org/sigs/distutils-sig/',
-      packages=['distutils', 'distutils.command'],
+      description='Data cleaning and normalizing tool for movie dataset',
+      author='Tovi Tu',
+      author_email='jianhong.t@wustl.edu',
+      packages=['MovieClean'],
      )

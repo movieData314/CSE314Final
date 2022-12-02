@@ -16,3 +16,6 @@ agg('company', 'genre', peek=True)
 
 ## agg
 ::: RDlite.accessor.agg
+
+## Node
+::: RDlite.node.Node
