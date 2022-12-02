@@ -1,4 +1,5 @@
 import pandas as pd
+from RDlite.node import Node
 
 # Use Absolute Path
 FILE_PATH = "/workspaces/CSE314Final/Data/"
@@ -15,25 +16,6 @@ setup_dict = {
     "clean_movie.csv": ["id"],
 }
 
-class Node:
-    path_to_file = None
-    id = None
-    features = None
-
-    def __init__(self, path: str, id: list):
-        peek = pd.read_csv(path, nrows=1)
-        self.features = peek.columns.values
-        self.path_to_file = path
-        self.id = id
-
-    def __leq__(self, other):
-        return self.path_to_file < other.path_to_file
-
-    def __getitem__(self, *key):
-        return pd.read_csv(self.path_to_file, usecols=[*self.id, *key])
-
-    def peek(self, *key):
-        return pd.read_csv(self.path_to_file, usecols=[*self.id, *key], nrows=50)
 
 
 nodes = [Node(FILE_PATH + name, id) for name, id in setup_dict.items()]
