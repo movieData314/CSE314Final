@@ -14,8 +14,6 @@ agg('company', 'genre', peek=True)
 - file_path: The local path to the csv files
 - all_features: A list of all available features.
 
-## agg
 ::: RDlite.accessor.agg
 
-## Node
 ::: RDlite.node.Node

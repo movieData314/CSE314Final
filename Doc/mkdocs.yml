@@ -11,9 +11,11 @@ plugins:
 - mkdocstrings:
     handlers:
         python:
-            paths: [.., ../MovieClean]
+            paths: [.., ../MovieClean, ../RDlite, ../dashProject]
             rendering:
                 show_source: false
+                show_root_heading: false
+                show_root_full_path: false
 
 watch:
     - ../RDlite

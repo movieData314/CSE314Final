@@ -6,8 +6,6 @@ import numpy as np
 
 def append_id(df: pd.DataFrame, ID: int, id_col: str) -> pd.DataFrame:
     """
-    append_id
-    ---------
     Add a new column named "id" , which has the same value as `ID`, to the given dataframe.
 
     Note:
