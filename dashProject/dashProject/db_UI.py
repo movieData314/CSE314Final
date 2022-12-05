@@ -119,7 +119,7 @@ def advanced_graph_factory(app: Dash) -> html:
         [
             dbc.NavbarSimple(
                 children=[
-                    dbc.NavItem(dbc.NavLink("Documentation", href="#")),
+                    dbc.NavItem(dbc.NavLink("Documentation", href="https://movieData314.github.io/CSE314Final/")),
                     dbc.DropdownMenu(
                         children=[
                             dbc.DropdownMenuItem("More pages", header=True),
