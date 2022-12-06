@@ -54,8 +54,6 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#bdd-style-documentation">BDD-style documentation</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#contributing-guide">Contributing Guide</a>
-    </li>
     </ul>
                 </li>
               </ul>
@@ -160,7 +158,63 @@ sys.path.append(&lt;pathToModule&gt;)
 <h3 id="cse314moduletesting">CSE314ModuleTesting</h3>
 <p>This notebook shows how to do aggregate on dataframes and retrieve the wanted data.</p>
 <h2 id="bdd-style-documentation">BDD-style documentation</h2>
-<h2 id="contributing-guide">Contributing Guide</h2>
+<p><strong>Title: Data Cleaning</strong></p>
+<p><strong>As a</strong> Data Anlyst who just obtained the raw movie data <br />
+<strong>I want</strong>  to clean the raw data <br />
+<strong>So that</strong> the data contains no error and no duplicates and makes sense in the real-life context <br /></p>
+<p><strong>Scenario</strong> 1: The data should not have complex data structure. <br />
+<strong>Given</strong> a dataset that has columns with json encoded as single strings <br />
+<strong>When</strong> we try to parse these columns <br />
+<strong>Then</strong> the key-value pairs are decoded into a dataframe or series <br /></p>
+<p><strong>Scenario</strong> 2: The numerals in the data should have plausible values <br />
+<strong>Given</strong> a column that represent mony but contains many 0’s <br />
+<strong>When</strong> we clean this column <br />
+<strong>Then</strong> 0’s are replaced by not-a-number flag <br /></p>
+<p><strong>Scenario</strong> 3: The data should not have duplicates <br />
+<strong>Given</strong> a dataset that contains exactly the same two rows <br />
+<strong>When</strong> we clean this data <br />
+<strong>Then</strong> duplicate rows are removed and the index is unique <br /></p>
+<p><strong>Title</strong>: Data Normalization <br /></p>
+<p><strong>As a</strong> data analyst who have cleaned the data <br />
+<strong>I want</strong> rescale the dataset and split it up to form separate files with different gradularity <br />
+<strong>So that</strong> each file is optimized in size and properly indexed <br /></p>
+<p><strong>Scenario</strong> 1: The index column in files should have the same dtypes <br />
+<strong>Given</strong> two dataframes with the “id” column as the index but one column has strings rather than integers, <br />
+<strong>When</strong> normalize the data, <br />
+<strong>Then</strong> all index columns contains integers <br /></p>
+<p><strong>Scenario</strong> 2: Each data entry should have unique index<br />
+<strong>Given</strong> a dataframe of movie characters which cannot be identified by movie-id alone,<br />
+<strong>When</strong> we nromalize the data,<br />
+<strong>Then</strong> both movie-id and the name of actor are used as index<br /></p>
+<p><strong>Scenario</strong> 3: Data with its own granularity should be split into a new table,<br />
+<strong>Given</strong> a dataframe of actors that a many-to-many relationship to movie-id<br />
+<strong>When</strong> normalize the data,<br />
+<strong>Then</strong> a junction table for actors and movie-id is separated from rest of the movie data<br /></p>
+<p><strong>Title</strong>: Aggregation<br /></p>
+<p><strong>As a</strong> data analyst who wants to explore the data of interest<br />
+<strong>I want</strong> to aggregate the tables containing the data we want,<br />
+<strong>So that</strong>: I can calculate correlation and visualize those data<br /></p>
+<p><strong>Scenario</strong> 1: Separate tables should be able to be joined together using keys and foreign keys<br />
+<strong>Given</strong> a one-to-many table of genre data and a one-to-one movie info table,<br />
+<strong>When</strong> we merge the tables together,<br />
+<strong>Then</strong> the two tables are joined together based the movie-id column<br /></p>
+<p><strong>Title</strong>: Dashboard<br /></p>
+<p><strong>As a</strong> data analyst who obtain the data for the first time,<br />
+<strong>I want</strong> to do some quick exploration on the data<br />
+<strong>So that</strong> I have a sense of data about its structure, data types and other aspects<br /></p>
+<p><strong>Scenario</strong> 1: The dashboard app should provides some samples of the data <br />
+<strong>When</strong> we want to look at the data itself,<br />
+<strong>Then</strong> the dashboard samples a small chunk of data from each table present the joined table to the user<br />
+<strong>Then</strong> the user can navigate through the data using scroll bars and buttons<br /></p>
+<p><strong>Scenario</strong> 2: The dashboard app should visualize selected data <br />
+<strong>Given</strong> all the clean data,<br />
+<strong>When</strong> the user selectes two features from the data,<br />
+<strong>Then</strong> the app decides between a scatter plot or a bar plot to draw based on the data types<br />
+<strong>Then</strong> the app present a plot that allows the user to zoom in with cursor<br /></p>
+<p><strong>Scenario</strong> 3: The dashboard app should calculate the correlation<br />
+<strong>Given</strong> two numerical features selected by the user,<br />
+<strong>When</strong> the user hit the “submit” button,<br />
+<strong>Then</strong> the app presents a table including information such as quartiles and correlations<br /></p>
               
             </div>
           </div><footer>
@@ -207,5 +261,5 @@ sys.path.append(&lt;pathToModule&gt;)
 
 <!--
 MkDocs version : 1.4.2
-Build Date UTC : 2022-12-05 21:46:31.892021+00:00
+Build Date UTC : 2022-12-06 04:24:07.909117+00:00
 -->
