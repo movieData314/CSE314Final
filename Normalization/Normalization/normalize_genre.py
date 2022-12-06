@@ -1,23 +1,23 @@
 import pandas as pd
 
-def one_hot_encoding(meta_data_df):
+def one_hot_encoding(meta_data_df: pd.DataFrame) -> pd.DataFrame:
     meta_data_genre_col = meta_data_df['genre_names_list']
     genres_onehot = pd.get_dummies(meta_data_genre_col.apply(pd.Series).stack(), prefix='Genre').sum(level=0)
     meta_data_genre_df = meta_data_df.join(genres_onehot)
 
     return meta_data_genre_df
 
-def movie_profit_calculation(meta_data_df):
+def movie_profit_calculation(meta_data_df: pd.DataFrame) -> pd.DataFrame:
     meta_data_df['profit'] = meta_data_df['revenue'] - meta_data_df['budget']
     
     return meta_data_df
 
-def movie_revenue_budget_ration(meta_data_df):
+def movie_revenue_budget_ratio(meta_data_df: pd.DataFrame) -> pd.DataFrame:
     meta_data_df['ratio_rev_budget'] = meta_data_df['revenue'] / meta_data_df['budget']
     
     return meta_data_df
 
-def genre_median_statistics(meta_data_df):
+def genre_median_statistics(meta_data_df: pd.DataFrame) -> pd.DataFrame:
     genre_list = ['Genre_Action', 'Genre_Adventure', 'Genre_Animation', 'Genre_Comedy', 'Genre_Crime', 'Genre_Documentary', 'Genre_Drama', 'Genre_Family', 'Genre_Fantasy', 'Genre_Foreign', 'Genre_History', 'Genre_Horror', 'Genre_Music', 'Genre_Mystery', 'Genre_Romance', 'Genre_Science Fiction', 'Genre_TV Movie', 'Genre_Thriller', 'Genre_War', 'Genre_Western']
   
     revenue_median = []
@@ -27,7 +27,7 @@ def genre_median_statistics(meta_data_df):
 
     for genre in genre_list:
         genre_revenue_median = meta_data_df[meta_data_df[genre] == 1.0]['revenue'].median()
-        revenue_median.append(genre_revenue_mean)
+        revenue_median.append(genre_revenue_median)
         genre_budget_median = meta_data_df[meta_data_df[genre] == 1.0]['budget'].median()
         budget_median.append(genre_budget_median)
         genre_profit_median = meta_data_df[meta_data_df[genre] == 1.0]['profit'].median()
@@ -46,7 +46,7 @@ def genre_median_statistics(meta_data_df):
   
     return genre_median_df
 
-def genre_mean_statistics(meta_data_df):
+def genre_mean_statistics(meta_data_df: pd.DataFrame) -> pd.DataFrame:
     genre_list = ['Genre_Action', 'Genre_Adventure', 'Genre_Animation', 'Genre_Comedy', 'Genre_Crime', 'Genre_Documentary', 'Genre_Drama', 'Genre_Family', 'Genre_Fantasy', 'Genre_Foreign', 'Genre_History', 'Genre_Horror', 'Genre_Music', 'Genre_Mystery', 'Genre_Romance', 'Genre_Science Fiction', 'Genre_TV Movie', 'Genre_Thriller', 'Genre_War', 'Genre_Western']
   
     revenue_mean = []
