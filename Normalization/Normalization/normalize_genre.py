@@ -2,7 +2,7 @@ import pandas as pd
 
 def one_hot_encoding(meta_data_df):
     meta_data_genre_col = meta_data_df['genre_names_list']
-    genres_onehot = pd.get_dummies(ds_meta_genre_col.apply(pd.Series).stack(), prefix='Genre').sum(level=0)
+    genres_onehot = pd.get_dummies(meta_data_genre_col.apply(pd.Series).stack(), prefix='Genre').sum(level=0)
     meta_data_genre_df = meta_data_df.join(genres_onehot)
 
     return meta_data_genre_df
@@ -26,13 +26,13 @@ def genre_median_statistics(meta_data_df):
     ratio_median = []
 
     for genre in genre_list:
-        genre_revenue_median = ds_meta_genre[ds_meta_genre[genre] == 1.0]['revenue'].median()
+        genre_revenue_median = meta_data_df[meta_data_df[genre] == 1.0]['revenue'].median()
         revenue_median.append(genre_revenue_mean)
-        genre_budget_median = ds_meta_genre[ds_meta_genre[genre] == 1.0]['budget'].median()
+        genre_budget_median = meta_data_df[meta_data_df[genre] == 1.0]['budget'].median()
         budget_median.append(genre_budget_median)
-        genre_profit_median = ds_meta_genre[ds_meta_genre[genre] == 1.0]['profit'].median()
+        genre_profit_median = meta_data_df[meta_data_df[genre] == 1.0]['profit'].median()
         profit_median.append(genre_profit_median)
-        genre_ratio_median = ds_meta_genre[ds_meta_genre[genre] == 1.0]['ratio_rev_budget'].median()
+        genre_ratio_median = meta_data_df[meta_data_df[genre] == 1.0]['ratio_rev_budget'].median()
         ratio_median.append(genre_ratio_median)
 
     genre_median_df = pd.DataFrame(
@@ -55,13 +55,13 @@ def genre_mean_statistics(meta_data_df):
     ratio_mean = []
 
     for genre in genre_list:
-        genre_revenue_mean = ds_meta_genre[ds_meta_genre[genre] == 1.0]['revenue'].mean()
+        genre_revenue_mean = meta_data_df[meta_data_df[genre] == 1.0]['revenue'].mean()
         revenue_mean.append(genre_revenue_mean)
-        genre_budget_mean = ds_meta_genre[ds_meta_genre[genre] == 1.0]['budget'].mean()
+        genre_budget_mean = meta_data_df[meta_data_df[genre] == 1.0]['budget'].mean()
         budget_mean.append(genre_budget_mean)
-        genre_profit_mean = ds_meta_genre[ds_meta_genre[genre] == 1.0]['profit'].mean()
+        genre_profit_mean = meta_data_df[meta_data_df[genre] == 1.0]['profit'].mean()
         profit_mean.append(genre_profit_mean)
-        genre_ratio_mean = ds_meta_genre[ds_meta_genre[genre] == 1.0]['ratio_rev_budget'].mean()
+        genre_ratio_mean = meta_data_df[meta_data_df[genre] == 1.0]['ratio_rev_budget'].mean()
         ratio_mean.append(genre_ratio_mean)
 
     genre_mean_df = pd.DataFrame(
