@@ -4,6 +4,7 @@ nav:
     - RDlite: rdlite.md
     - MovieClean: movieClean.md
     - dashProject: dashpro.md
+    - Normalization: normalization.md
 
 theme: readthedocs
 
