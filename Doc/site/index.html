@@ -44,15 +44,25 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#installation-instructions">Installation Instructions</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#getting-started-guide">Getting Started Guide</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#314final_tovicleanipynb">314Final_ToviClean.ipynb</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#cse314moduletesting">CSE314ModuleTesting</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#314final_patrickapi">314Final_PatrickAPI</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#314final_wongrene">314Final_WonGrene</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#profit">profit</a>
+    </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#bdd-style-documentation">BDD-style documentation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#contributing-guide">Contributing Guide</a>
     </li>
     </ul>
                 </li>
@@ -104,11 +114,17 @@
 <p>This project aims to investigate various properties and relations in the context of past movies across languages and countries. There are more than 14 features and tens of thousands of data entries. For our group, we are primarily interested in which genres of movies are the most profitable. </p>
 <p>To help with our analysis, we develop several modules to do cleaning, normalization, and visualization. This documentation is provided to get rid of the fuss and let external clients start their analysis right away.</p>
 <h2 id="project-layout">Project layout</h2>
-<pre><code>docs/
+<pre><code>CSE314FINAL/
+    API/
+        API/                    # API module to access new movie data from imbd
+            get_api_data.py
+        setup.py
     dashProject/                # The dashboard app to visualize the data in an interactive way
-        data_process.py         # Helper functions to convert dataframe to dashboard objects
-        tovi_dashboard.py       # The dashboard app
-        db_UI.py                # The package of dashboard UI's
+        dashProject/
+            data_process.py     # Helper functions to convert dataframe to dashboard objects
+            tovi_dashboard.py   # The dashboard app
+            db_UI.py            # The package of dashboard UI's
+        setup.py
     Data/                       # The directory for clean data
         actors.csv
         clean_movie.csv
@@ -121,15 +137,31 @@
         movies_names.csv
         ratings.csv
     Doc/                        # Folder for documentations
-        ...
-    MovieClean/                 # Installable python module for cleaning and normalizing dataset
-        MovieClean/ 
+        docs/
+            api.md
+            dashpro.md
+            index.md
+            movieClean.md
+            normalization.md
+            rdlite.md
+        site/                   # Documentation website source code
+            ...
+    MovieClean/                 # Python module for cleaning and normalizing dataset
+        MovieClean/
+            data_type.py
+            genre_cleaning.py 
             norm.py
             ...
-        ...
-    RDlite/                     # A lightweight relational database
-        accessor.py
-        ...
+        setup.py
+    Normalization/              # Normalization package for genre
+        Normalization/
+            normalize_genre.py 
+        setup.py
+    RDlite/                     # A lightweight relational database for dashboard
+        RDlite/
+            accessor.py
+        setup.py
+
     314Final_ToviClean.ipynb    # A jupyter notebook to demonstrate the cleaning process
     CSE314ModuleTesting.ipynb   # A jupyter notebook to demonstrate usages of RDlite
     ...                         # Other files
@@ -137,34 +169,69 @@
 <h2 id="installation-instructions">Installation Instructions</h2>
 <ol>
 <li>
-<p>Pull the project from this github repository.
-    <code>git pull &lt;url&gt;</code></p>
+<p>Pull the project from this github repo: https://github.com/movieData314/CSE314Final </p>
+<p><code>git pull &lt;url&gt;</code> </p>
 </li>
 <li>
-<p>Install the MovieClean module
-    <code>pip install -e MovieClean</code></p>
+<p>Create conda environment from the included yml file</p>
+<p><code>conda env create -f env.yml</code></p>
 </li>
 <li>
-<p>Configure the data directory in RDlite.<strong>init</strong>
-    <code>file_path = &lt;actual path to the data&gt;</code></p>
+<p>Activate conda environments </p>
+<p><code>conda activate general</code></p>
 </li>
 <li>
-<p>Configure the system path variable in db_UI.py
-    <code>sys.path.append('&lt;local_path&gt;/cse314final')</code></p>
+<p>Install the modules </p>
+<p><code>pip install -e MovieClean
+pip install -e API
+...</code></p>
+</li>
+<li>
+<p><Optional> Configure the RDlite module to aggregate clean data. (Work on clean data only) </p>
+<p><code>FILE_PATH = &lt;absolute path to the data&gt;</code> </p>
+</li>
+<li>
+<p>Configure the system path variable in db_UI.py </p>
+<p><code>sys.path.append('&lt;local_path&gt;/cse314final')</code></p>
 </li>
 </ol>
 <p>After these steps, you should be ready to use the modules within the cse314final folder. </p>
-<p><strong>Notice</strong> that MovieClean module is the only module with setup.py file, which allows you to use it outside this folder, while the other module are intended to be used within this folder. </p>
-<p>To make non-installable modules accessible by external codes, add this line to the script:</p>
+<p><strong>Notice</strong> that all of the modules are written in a way that they can be install using pip</p>
+<p>Tip to load local package withou installing</p>
 <pre><code>import sys
 sys.path.append(&lt;pathToModule&gt;)
 </code></pre>
+<h2 id="getting-started-guide">Getting Started Guide</h2>
+<p>With all the modules installed and set up, you are ready to start your own analysis using the movie data. For correlation analysis or ml model building we provide the following guide to get you prepared.</p>
+<ol>
+<li>
+<p>Clean the data with MovieClean: extract json-style strings, fix dtypes and set index columns with tools provided in the module.</p>
+</li>
+<li>
+<p>Normalize the data: make separate tables with different gradularity to optimize space usages and make the data easy to work with using <code>Normalization</code> module.</p>
+</li>
+<li>
+<p>Add more data: The provided dataset contains movies prior to 2018. To add more recent movie information, use <code>API</code> module to retrieve the data from MovieDB.</p>
+</li>
+<li>
+<p>Quick visualization: Before writing any code, use <code>dashProject</code> module to navigate through the sample data and visualize correlation and central tendency.</p>
+</li>
+<li>
+<p>Visit the examplery notebooks for ideas or hint to use our modules.</p>
+</li>
+</ol>
 <h2 id="examples">Examples</h2>
 <h3 id="314final_tovicleanipynb">314Final_ToviClean.ipynb</h3>
 <p>This notebook shows how we clean the dataset so that they are in long form and could be merged with "df.join" syntax. </p>
 <p>The primary diffculty is that multiple features store giant json format strings or list of json strings in a single cell, which violates the first normal form. Meanwhile, the fact that they are python strings adds to the difficulty of this task because python uses both single quote and double quote to wrap a string adeptively but python's json parser only recognizes double quotes. Therefore, we used a theoretical tool called the abstract syntax tree to reformat the string. </p>
 <h3 id="cse314moduletesting">CSE314ModuleTesting</h3>
 <p>This notebook shows how to do aggregate on dataframes and retrieve the wanted data.</p>
+<h3 id="314final_patrickapi">314Final_PatrickAPI</h3>
+<p>This notebook shows examples of retrieving more movie data entries as complement to the existing ones.</p>
+<h3 id="314final_wongrene">314Final_WonGrene</h3>
+<p>This notebook shows how we normalize the genre feature for our analysis.</p>
+<h3 id="profit">profit</h3>
+<p>This notebook shows the workflow how we find the most profitable movie genre.</p>
 <h2 id="bdd-style-documentation">BDD-style documentation</h2>
 <p><strong>Title: Data Cleaning</strong></p>
 <p><strong>As a</strong> Data Anlyst who just obtained the raw movie data <br />
@@ -223,6 +290,14 @@ sys.path.append(&lt;pathToModule&gt;)
 <strong>Given</strong> two numerical features selected by the user,<br />
 <strong>When</strong> the user hit the “submit” button,<br />
 <strong>Then</strong> the app presents a table including information such as quartiles and correlations<br /></p>
+<p><strong>Title</strong>: API
+<strong>As a</strong> movie lover 
+<strong>I want</strong> to gather information about recent movies
+<strong>So that</strong> the movie dataset is more complete</p>
+<p><strong>Scenario</strong> 1: The movie api shoud return movies released after 2018
+<strong>When</strong> we request the movies,
+<strong>Then</strong> the api returns a dataframe of the movies details</p>
+<h2 id="contributing-guide">Contributing Guide</h2>
               
             </div>
           </div><footer>
@@ -269,5 +344,5 @@ sys.path.append(&lt;pathToModule&gt;)
 
 <!--
 MkDocs version : 1.4.2
-Build Date UTC : 2022-12-19 18:35:37.061767+00:00
+Build Date UTC : 2022-12-19 23:09:02.260815+00:00
 -->
