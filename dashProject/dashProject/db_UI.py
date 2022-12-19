@@ -5,9 +5,6 @@ import plotly.express as px
 import sys
 import plotly
 
-# Path to local modules
-sys.path.append("/home/workspaces/CSE314Final/")
-
 # Local modules
 import data_process as dp
 from RDlite import all_features

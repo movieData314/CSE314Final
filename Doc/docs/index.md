@@ -6,11 +6,17 @@ To help with our analysis, we develop several modules to do cleaning, normalizat
 
 ## Project layout
 
-    docs/
+    CSE314FINAL/
+        API/
+            API/                    # API module to access new movie data from imbd
+                get_api_data.py
+            setup.py
         dashProject/                # The dashboard app to visualize the data in an interactive way
-            data_process.py         # Helper functions to convert dataframe to dashboard objects
-            tovi_dashboard.py       # The dashboard app
-            db_UI.py                # The package of dashboard UI's
+            dashProject/
+                data_process.py     # Helper functions to convert dataframe to dashboard objects
+                tovi_dashboard.py   # The dashboard app
+                db_UI.py            # The package of dashboard UI's
+            setup.py
         Data/                       # The directory for clean data
             actors.csv
             clean_movie.csv
@@ -23,50 +29,97 @@ To help with our analysis, we develop several modules to do cleaning, normalizat
             movies_names.csv
             ratings.csv
         Doc/                        # Folder for documentations
-            ...
-        MovieClean/                 # Installable python module for cleaning and normalizing dataset
-            MovieClean/ 
+            docs/
+                api.md
+                dashpro.md
+                index.md
+                movieClean.md
+                normalization.md
+                rdlite.md
+            site/                   # Documentation website source code
+                ...
+        MovieClean/                 # Python module for cleaning and normalizing dataset
+            MovieClean/
+                data_type.py
+                genre_cleaning.py 
                 norm.py
                 ...
-            ...
-        RDlite/                     # A lightweight relational database
-            accessor.py
-            ...
+            setup.py
+        Normalization/              # Normalization package for genre
+            Normalization/
+                normalize_genre.py 
+            setup.py
+        RDlite/                     # A lightweight relational database for dashboard
+            RDlite/
+                accessor.py
+            setup.py
+
         314Final_ToviClean.ipynb    # A jupyter notebook to demonstrate the cleaning process
         CSE314ModuleTesting.ipynb   # A jupyter notebook to demonstrate usages of RDlite
         ...                         # Other files
 
 ## Installation Instructions
 
-1. Pull the project from this github repository.
+1. Pull the project from this github repo: https://github.com/movieData314/CSE314Final 
+
     ```
     git pull <url>
+    ``` 
+
+2. Create conda environment from the included yml file
+
+    ```
+    conda env create -f env.yml
     ```
 
-2. Install the MovieClean module
+3. Activate conda environments 
+
+    ```
+    conda activate general
+    ```
+
+4. Install the modules 
+
     ```
     pip install -e MovieClean
+    pip install -e API
+    ...
     ```
 
-3. Configure the data directory in RDlite.__init__
-    ```
-    file_path = <actual path to the data>
-    ```
+5. <Optional> Configure the RDlite module to aggregate clean data. (Work on clean data only) 
 
-4. Configure the system path variable in db_UI.py
+    ```
+    FILE_PATH = <absolute path to the data>
+    ``` 
+
+6. Configure the system path variable in db_UI.py 
+
     ```
     sys.path.append('<local_path>/cse314final')
     ```
 
 After these steps, you should be ready to use the modules within the cse314final folder. 
 
-**Notice** that MovieClean module is the only module with setup.py file, which allows you to use it outside this folder, while the other module are intended to be used within this folder. 
+**Notice** that all of the modules are written in a way that they can be install using pip
 
-To make non-installable modules accessible by external codes, add this line to the script:
+Tip to load local package withou installing
 ```
 import sys
 sys.path.append(<pathToModule>)
 ```
+
+## Getting Started Guide
+With all the modules installed and set up, you are ready to start your own analysis using the movie data. For correlation analysis or ml model building we provide the following guide to get you prepared.
+
+1. Clean the data with MovieClean: extract json-style strings, fix dtypes and set index columns with tools provided in the module.
+
+2. Normalize the data: make separate tables with different gradularity to optimize space usages and make the data easy to work with using `Normalization` module.
+
+3. Add more data: The provided dataset contains movies prior to 2018. To add more recent movie information, use `API` module to retrieve the data from MovieDB.
+
+4. Quick visualization: Before writing any code, use `dashProject` module to navigate through the sample data and visualize correlation and central tendency.
+
+5. Visit the examplery notebooks for ideas or hint to use our modules.
 
 ## Examples
 
@@ -77,6 +130,15 @@ The primary diffculty is that multiple features store giant json format strings 
 
 ###  CSE314ModuleTesting
 This notebook shows how to do aggregate on dataframes and retrieve the wanted data.
+
+### 314Final_PatrickAPI
+This notebook shows examples of retrieving more movie data entries as complement to the existing ones.
+
+### 314Final_WonGrene
+This notebook shows how we normalize the genre feature for our analysis.
+
+### profit
+This notebook shows the workflow how we find the most profitable movie genre.
 
 ## BDD-style documentation
 
@@ -158,3 +220,14 @@ This notebook shows how to do aggregate on dataframes and retrieve the wanted da
 **Given** two numerical features selected by the user,<br />
 **When** the user hit the “submit” button,<br />
 **Then** the app presents a table including information such as quartiles and correlations<br />
+
+**Title**: API
+**As a** movie lover 
+**I want** to gather information about recent movies
+**So that** the movie dataset is more complete
+
+**Scenario** 1: The movie api shoud return movies released after 2018
+**When** we request the movies,
+**Then** the api returns a dataframe of the movies details
+
+## Contributing Guide
