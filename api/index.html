@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>RDlite - MovieDataset</title>
+    <title>API - MovieDataset</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -13,8 +13,8 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "RDlite";
-        var mkdocs_page_input_path = "rdlite.md";
+        var mkdocs_page_name = "API";
+        var mkdocs_page_input_path = "api.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -41,20 +41,8 @@
                 <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
                 </li>
               </ul>
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">RDlite</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#basic-usage">Basic Usage</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#variables">Variables</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#RDlite.accessor.agg">agg</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#RDlite.node.Node">Node</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#RDlite.node.Node.peek">peek()</a>
-    </li>
-    </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rdlite/">RDlite</a>
                 </li>
               </ul>
               <ul>
@@ -69,8 +57,18 @@
                 <li class="toctree-l1"><a class="reference internal" href="../normalization/">Normalization</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../api/">API</a>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">API</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#API.get_api_data.get_all_movies_2018_plus">get_all_movies_2018_plus</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#API.get_api_data.get_2018_plus_movie_details">get_2018_plus_movie_details</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#API.get_api_data.movie_details_to_df">movie_details_to_df</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#example-cleaning-code">Example Cleaning Code</a>
+    </li>
+    </ul>
                 </li>
               </ul>
       </div>
@@ -87,7 +85,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>RDlite</li>
+      <li>API</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -96,160 +94,153 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="rdlite-documentation">RDlite Documentation</h1>
-<p>RDlite is a light-weight relational database to retrieve data from a local relational database.</p>
-<h2 id="basic-usage">Basic Usage</h2>
-<ol>
-<li>Change the <code>file_path</code> variable in <code>RDlite.__init__</code> to designate the correct path to the csv files in your local system.</li>
-<li>Access the "mapping" variable to check the names of the features you intend to retrieve.</li>
-<li>Retrive the dataframe using the following syntax.</li>
-</ol>
-<pre><code>agg('company', 'genre', peek=True)
-</code></pre>
-<h2 id="variables">Variables</h2>
-<ul>
-<li>Mapping: A <code>dic[str, str]</code> that maps a feature to a csv file.</li>
-<li>file_path: The local path to the csv files</li>
-<li>all_features: A list of all available features.</li>
-</ul>
+                <h1 id="api-documentation">API Documentation</h1>
+<p>"API" is a package with tools for receiving information from TheMovieDB api for movies from 2018 to present. </p>
 
 
 <div class="doc doc-object doc-function">
 
 
-<a id="RDlite.accessor.agg"></a>
+<a id="API.get_api_data.get_all_movies_2018_plus"></a>
   <div class="doc doc-contents first">
   
-      <p>Return a dataframe containing the features of interest.</p>
+      <p>Get every available movie from TheMovieDB api with a release_date year of 2018 or newer.</p>
 
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>features</code></td>
-          <td>
-                <code>strs</code>
-          </td>
-          <td><p>Names of the features to retrieve</p></td>
-          <td>
-                <code>()</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>peek</code></td>
-          <td>
-                <code>bool</code>
-          </td>
-          <td><p>A boolean default to False. </p>
-<p>If true, it returns the first 50 entries from each feature.</p></td>
-          <td>
-                <code>False</code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code><span title="pandas">pd</span>.<span title="pandas.DataFrame">DataFrame</span></code>
-          </td>
-          <td><p>pd.DataFrame
-A dataframe that contains the features of interest</p></td>
-        </tr>
-    </tbody>
-  </table>
-
-  </div>
-
-</div>
-
-<div class="doc doc-object doc-class">
-
-
-<a id="RDlite.node.Node"></a>
-  <div class="doc doc-contents first">
-
-  
-      <p>The Node class serves as the proxy between the data saved locally 
-and the programs intend to use them. Each physical file is aliased 
-by a Node object.</p>
-
-<details class="data-fields">
-  <summary>Data Fields</summary>
-  <p>path_to_file (str): The local directory to the file.
-id (str): The index column of this specific file.
-features: The features stored.</p>
+<details class="note">
+  <summary>Note</summary>
+  <p>Visit https://www.themoviedb.org and create an account to receive an api key (or use mine: c677b8af9185df684a2f9cb664f5159d)</p>
 </details>
-  <p><strong>Attributes:</strong></p>
+<details class="note">
+  <summary>Note</summary>
+  <p>This is time intensive operation. Running it may take a minute to complete. If for whatever reason you believe you need this information cached, consider converting the dictionary to a csv file for storage.</p>
+</details>
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
         <th>Name</th>
         <th>Type</th>
         <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
-          <td><code>[]operator</code></td>
+          <td><code>api</code></td>
           <td>
+                <code>str</code>
           </td>
-          <td><p>Return the selected data in a pandas dataframe</p></td>
-        </tr>
-        <tr>
-          <td><code>peek</code></td>
+          <td><p>Your personal TheMovieDB api key for querying the api.</p></td>
           <td>
-                <code><span title="pandas">pd</span>.<span title="pandas.DataFrame">DataFrame</span></code>
+              <em>required</em>
           </td>
-          <td><p>Return the first 50 rows of the selected data</p></td>
         </tr>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>dict</code>
+          </td>
+          <td><p>dict
+A dictionary of all the movies released in 2018 to present.</p></td>
+        </tr>
+    </tbody>
+  </table>
 
+  </div>
 
-  
-
-  <div class="doc doc-children">
-
-
-
-
-
-
-
-
+</div>
 
 <div class="doc doc-object doc-function">
 
 
-
-<h2 id="RDlite.node.Node.peek" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">peek</span><span class="p">(</span><span class="o">*</span><span class="n">key</span><span class="p">)</span></code>
-
-</h2>
-
-
-  <div class="doc doc-contents ">
+<a id="API.get_api_data.get_2018_plus_movie_details"></a>
+  <div class="doc doc-contents first">
   
-      <p>Return the first 50 rows of selected data.</p>
+      <p>Get revenue, budget, and genre information for movies from TheMovieDB api with a release_date year of 2018 or newer.</p>
+
+<details class="note">
+  <summary>Note</summary>
+  <p>Visit https://www.themoviedb.org and create an account to receive an api key (or use mine: c677b8af9185df684a2f9cb664f5159d)</p>
+</details>
+<details class="note">
+  <summary>Note</summary>
+  <p>This is time intensive operation. Running it may take a couple minutes to complete. If for whatever reason you believe you need this information cached, consider converting the dictionary to a csv file for storage.</p>
+</details>
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>api</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Your personal TheMovieDB api key for querying the api.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>movies2018plus</code></td>
+          <td>
+                <code>dict</code>
+          </td>
+          <td><p>A dictionary of all the movies released in 2018 to present.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>dict</code>
+          </td>
+          <td><p>dict
+A dictionary including the revenue, budget, and genres of of all the movies released in 2018 to present.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<a id="API.get_api_data.movie_details_to_df"></a>
+  <div class="doc doc-contents first">
+  
+      <p>Convert a dictionary containing revenue, budget, and genre information to a dataframe.</p>
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -263,13 +254,13 @@ features: The features stored.</p>
     </thead>
     <tbody>
         <tr>
-          <td><code>key</code></td>
+          <td><code>details_movies2018plus</code></td>
           <td>
-                <code>strs</code>
+                <code>dict</code>
           </td>
-          <td><p>Features of interest in this specifc file</p></td>
+          <td><p>A dictionary including the revenue, budget, and genres of of all the movies released in 2018 to present.</p></td>
           <td>
-                <code>()</code>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
@@ -289,28 +280,20 @@ features: The features stored.</p>
                 <code><span title="pandas">pd</span>.<span title="pandas.DataFrame">DataFrame</span></code>
           </td>
           <td><p>pd.DataFrame
-A dataframe contain the selected features plus the index column</p></td>
+A dataframe including the revenue, budget, and genres of of all the movies released in 2018 to present.</p></td>
         </tr>
     </tbody>
   </table>
 
   </div>
 
-</div>
-
-
-
-  </div>
-
-  </div>
-
-</div>
+</div><h2 id="example-cleaning-code">Example Cleaning Code</h2>
+<p>Go to 314Final_PatrickAPI.ipynb for API function usage examples.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href=".." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../movieClean/" class="btn btn-neutral float-right" title="MovieClean">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../normalization/" class="btn btn-neutral float-left" title="Normalization"><span class="icon icon-circle-arrow-left"></span> Previous</a>
     </div>
 
   <hr/>
@@ -333,10 +316,8 @@ A dataframe contain the selected features plus the index column</p></td>
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../normalization/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
-    
-      <span><a href="../movieClean/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

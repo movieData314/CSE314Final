@@ -74,6 +74,24 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#MovieClean.data_type.budget_revenue_cols_to_float">budget_revenue_cols_to_float</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#MovieClean.data_type.budget_revenue_cols_to_float--budget_revenue_cols_to_float">budget_revenue_cols_to_float</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#MovieClean.genre_cleaning.return_names_list">return_names_list</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#MovieClean.genre_cleaning.return_names_list--return_names_list">return_names_list</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#MovieClean.genre_cleaning.extract_genre">extract_genre</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#MovieClean.genre_cleaning.extract_genre--extract_genre">extract_genre</a>
+    </li>
+        </ul>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#example-cleaning-code">Example Cleaning Code</a>
     </li>
     </ul>
@@ -81,6 +99,14 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../dashpro/">dashProject</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../normalization/">Normalization</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api/">API</a>
                 </li>
               </ul>
       </div>
@@ -493,8 +519,177 @@ The dataframe with index's dtype converted</p></td>
 
   </div>
 
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<a id="MovieClean.data_type.budget_revenue_cols_to_float"></a>
+  <div class="doc doc-contents first">
+  
+      <h3 id="MovieClean.data_type.budget_revenue_cols_to_float--budget_revenue_cols_to_float">budget_revenue_cols_to_float</h3>
+<p>Returns a dataframe with data type of its columns correctly assigned</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>meta_data_df</code></td>
+          <td>
+                <code><span title="pandas">pd</span>.<span title="pandas.DataFrame">DataFrame</span></code>
+          </td>
+          <td><p>The dataframe that contains the original movie meta data</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="pandas">pd</span>.<span title="pandas.DataFrame">DataFrame</span></code>
+          </td>
+          <td><p>pd.DataFrame
+a meta data dataframe with correct data types</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<a id="MovieClean.genre_cleaning.return_names_list"></a>
+  <div class="doc doc-contents first">
+  
+      <h3 id="MovieClean.genre_cleaning.return_names_list--return_names_list">return_names_list</h3>
+<p>Returns a list of string that contains the genres of the movie</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>dic</code></td>
+          <td>
+                <code>dict</code>
+          </td>
+          <td><p>a genre dictionary derived from the JSON formatted column of the metadata dataset</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>list[str]</code>
+          </td>
+          <td><p>list[str]
+a list of string that contains the genres of the movie</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<a id="MovieClean.genre_cleaning.extract_genre"></a>
+  <div class="doc doc-contents first">
+  
+      <h3 id="MovieClean.genre_cleaning.extract_genre--extract_genre">extract_genre</h3>
+<p>Returns a list of string that contains the genres of the movie</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>meta_data_df</code></td>
+          <td>
+                <code><span title="pandas">pd</span>.<span title="pandas.DataFrame">DataFrame</span></code>
+          </td>
+          <td><p>The dataframe that contains the original movie meta data</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="pandas">pd</span>.<span title="pandas.DataFrame">DataFrame</span></code>
+          </td>
+          <td><p>pd.DataFrame
+a meta data dataframe with a column named genre_names_list, which contains a list of genres, added to it</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
 </div><h2 id="example-cleaning-code">Example Cleaning Code</h2>
-<p>Go to 314Final_ToviClean.ipynb for cleaning examples.</p>
+<p>Go to 314Final_ToviClean.ipynb for cleaning examples. </p>
+<p>Go to 314Final_WonGenre.ipynb for data_type and genre_cleaning packages.</p>
               
             </div>
           </div><footer>
