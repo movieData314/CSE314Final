@@ -17,6 +17,7 @@ def one_hot_encoding(meta_data_df: pd.DataFrame) -> pd.DataFrame:
     meta_data_genre_col = meta_data_df['genre_names_list']
     genres_onehot = pd.get_dummies(meta_data_genre_col.apply(pd.Series).stack(), prefix='Genre').sum(level=0)
     meta_data_genre_df = meta_data_df.join(genres_onehot)
+    
 
     return meta_data_genre_df
 
