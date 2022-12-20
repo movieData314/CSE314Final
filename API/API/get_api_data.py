@@ -4,6 +4,8 @@ import json
 
 def get_all_movies_2018_plus(api: str) -> dict:
     """
+    ## get_all_movies_2018_plus
+
     Get every available movie from TheMovieDB api with a release_date year of 2018 or newer.
 
     Note:
@@ -16,8 +18,7 @@ def get_all_movies_2018_plus(api: str) -> dict:
         api (str): Your personal TheMovieDB api key for querying the api.
 
     Returns:
-        dict
-            A dictionary of all the movies released in 2018 to present.
+        A dictionary of all the movies released in 2018 to present.
 
     """
     movies2018plus = []
@@ -34,6 +35,8 @@ def get_all_movies_2018_plus(api: str) -> dict:
 
 def get_2018_plus_movie_details(api: str, movies2018plus: dict) -> dict:
     """
+    ## get_2018_plus_movie_details
+
     Get revenue, budget, and genre information for movies from TheMovieDB api with a release_date year of 2018 or newer.
 
     Note:
@@ -48,8 +51,7 @@ def get_2018_plus_movie_details(api: str, movies2018plus: dict) -> dict:
         movies2018plus (dict): A dictionary of all the movies released in 2018 to present.
 
     Returns:
-        dict
-            A dictionary including the revenue, budget, and genres of of all the movies released in 2018 to present.
+        A dictionary including the revenue, budget, and genres of of all the movies released in 2018 to present.
     """
     details_movies2018plus = []
     for movie in movies2018plus:
@@ -65,14 +67,15 @@ def get_2018_plus_movie_details(api: str, movies2018plus: dict) -> dict:
 def movie_details_to_df(details_movies2018plus: dict) -> pd.DataFrame:
 
     """
+    ## movie_details_to_df
+
     Convert a dictionary containing revenue, budget, and genre information to a dataframe.
 
     Arguments:
         details_movies2018plus (dict): A dictionary including the revenue, budget, and genres of of all the movies released in 2018 to present.
 
     Returns:
-        pd.DataFrame
-            A dataframe including the revenue, budget, and genres of of all the movies released in 2018 to present.
+        A dataframe including the revenue, budget, and genres of of all the movies released in 2018 to present.
     """
     apiDF = pd.DataFrame(details_movies2018plus,
                      columns=['revenue', 'budget', 'genres'])

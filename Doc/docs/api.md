@@ -8,4 +8,4 @@
 ::: API.get_api_data.movie_details_to_df
 
 ## Example Cleaning Code
-Go to 314Final_PatrickAPI.ipynb for API function usage examples.
+Go to API_Example.ipynb for API function usage examples.

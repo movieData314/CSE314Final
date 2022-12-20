@@ -2,7 +2,7 @@ import pandas as pd
 from RDlite.node import Node
 
 # Use Absolute Path
-FILE_PATH = "/workspaces/CSE314Final/Data/"
+FILE_PATH = "/Users/patricklynch/CSE314Final/Data/"
 
 
 setup_dict = {

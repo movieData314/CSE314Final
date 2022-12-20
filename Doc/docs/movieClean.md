@@ -18,6 +18,6 @@
 ::: MovieClean.genre_cleaning.extract_genre
 
 ## Example Cleaning Code
-Go to 314Final_ToviClean.ipynb for cleaning examples. 
+Go to Cleaning_Example.ipynb for cleaning examples. 
 
-Go to 314Final_WonGenre.ipynb for data_type and genre_cleaning packages.
+Go to Genre_Example.ipynb for data_type and genre_cleaning packages.

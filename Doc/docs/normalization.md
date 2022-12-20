@@ -13,4 +13,4 @@
 
 
 ## Example Normalization Code
-Go to 314Final_WonGenre.ipynb for normalizing genre data examples.
+Go to Genre_Example.ipynb for normalizing genre data examples.
