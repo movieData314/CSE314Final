@@ -232,3 +232,30 @@ This notebook shows the workflow how we find the most profitable movie genre.
 
 ## Contributing Guide
 
+First, thanks for for considering contributing to our project! There are many ways you can help out.
+
+1. Reporting a bug
+2. Submitting a fix
+3. Proposing new features
+
+### Report a bug
+
+If you spot a problem with the docs, report the issue by opening a new [issue](https://github.com/movieData314/CSE314Final). 
+
+### Make Changes
+
+Please follow [best practices](https://github.com/trein/dev-best-practices/wiki/Git-Commit-Best-Practices) for creating git commits.
+
+When your code is ready to be submitted, [submit a pull request](https://github.com/movieData314/CSE314Final/pulls) to begin the code review process.
+
+We only seek to accept code that you are authorized to contribute to the project. We have added a pull request template on our projects so that your contributions are made with the following confirmation: 
+
+> I confirm that this contribution is made under the terms of the license found in the root directory of this repository's source tree and that I have the authority necessary to make this contribution on behalf of its copyright owner.
+
+
+### Reference
+This document was adapted from the open-source contribution guidelines [here](https://gist.github.com/briandk/CONTRIBUTING.md) and also from yahoo [here](https://yahoo.github.io/oss-guide/docs/publishing/publishing-template/Contributing.html)
+
+
+
+
