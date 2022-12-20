@@ -244,13 +244,17 @@ If you spot a problem with the docs, report the issue by opening a new [issue](h
 
 ### Make Changes
 
-Please follow [best practices](https://github.com/trein/dev-best-practices/wiki/Git-Commit-Best-Practices) for creating git commits.
+We Use Github [Flow](https://docs.github.com/en/get-started/quickstart/github-flow), So All Code Changes Happen Through Pull Requests.
 
 When your code is ready to be submitted, [submit a pull request](https://github.com/movieData314/CSE314Final/pulls) to begin the code review process.
 
-We only seek to accept code that you are authorized to contribute to the project. We have added a pull request template on our projects so that your contributions are made with the following confirmation: 
+1. Fork the repo and create your branch from `main`.
+2. If you've added code that should be tested, add tests.
+3. If you've changed APIs, update the documentation.
+4. Issue that pull request!
 
-> I confirm that this contribution is made under the terms of the license found in the root directory of this repository's source tree and that I have the authority necessary to make this contribution on behalf of its copyright owner.
+### License
+By contributing, you agree that your contributions will be licensed under its WUSTL License.
 
 
 ### Reference
