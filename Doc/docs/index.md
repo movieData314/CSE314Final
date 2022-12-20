@@ -54,9 +54,12 @@ To help with our analysis, we develop several modules to do cleaning, normalizat
                 accessor.py
             setup.py
 
-        314Final_ToviClean.ipynb    # A jupyter notebook to demonstrate the cleaning process
-        CSE314ModuleTesting.ipynb   # A jupyter notebook to demonstrate usages of RDlite
-        ...                         # Other files
+        API_Example.ipynb    # A jupyter notebook to demonstrate the API process
+        Cleaning_Example.ipynb    # A jupyter notebook to demonstrate the cleaning process
+        env.yml
+        Genre_Example.ipynb    # A jupyter notebook to demonstrate the genre analysis process
+        ModuleTesting.ipynb   # A jupyter notebook to demonstrate usages of RDlite
+        profit.ipynb   # A jupyter notebook to demonstrate visualize and perform profit analysis
 
 ## Installation Instructions
 
