@@ -137,7 +137,7 @@ This notebook shows examples of retrieving more movie data entries as complement
 ### 314Final_WonGrene
 This notebook shows how we normalize the genre feature for our analysis.
 
-### profit
+### 314Final_YanProfit
 This notebook shows the workflow how we find the most profitable movie genre.
 
 ## BDD-style documentation
@@ -231,3 +231,8 @@ This notebook shows the workflow how we find the most profitable movie genre.
 **Then** the api returns a dataframe of the movies details
 
 ## Contributing Guide
+Data Cleaning:  Patrick, Won and Toni
+Aggregation: Yan
+Data Normalization and visualization: Won Yan
+Dashboard: Tovi
+API: Patrick
