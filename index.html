@@ -48,13 +48,13 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#314final_tovicleanipynb">314Final_ToviClean.ipynb</a>
+    <li class="toctree-l3"><a class="reference internal" href="#cleaning_exampleipynb">Cleaning_Example.ipynb</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#cse314moduletesting">CSE314ModuleTesting</a>
+    <li class="toctree-l3"><a class="reference internal" href="#moduletesting">ModuleTesting</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#314final_patrickapi">314Final_PatrickAPI</a>
+    <li class="toctree-l3"><a class="reference internal" href="#api_example">API_Example</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#314final_wongrene">314Final_WonGrene</a>
+    <li class="toctree-l3"><a class="reference internal" href="#genre_example">Genre_Example</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#profit">profit</a>
     </li>
@@ -63,6 +63,16 @@
     <li class="toctree-l2"><a class="reference internal" href="#bdd-style-documentation">BDD-style documentation</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#contributing-guide">Contributing Guide</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#report-a-bug">Report a bug</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#make-changes">Make Changes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#license">License</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a>
+    </li>
+        </ul>
     </li>
     </ul>
                 </li>
@@ -162,15 +172,18 @@
             accessor.py
         setup.py
 
-    314Final_ToviClean.ipynb    # A jupyter notebook to demonstrate the cleaning process
-    CSE314ModuleTesting.ipynb   # A jupyter notebook to demonstrate usages of RDlite
-    ...                         # Other files
+    API_Example.ipynb    # A jupyter notebook to demonstrate the API process
+    Cleaning_Example.ipynb    # A jupyter notebook to demonstrate the cleaning process
+    env.yml
+    Genre_Example.ipynb    # A jupyter notebook to demonstrate the genre analysis process
+    ModuleTesting.ipynb   # A jupyter notebook to demonstrate usages of RDlite
+    profit.ipynb   # A jupyter notebook to demonstrate visualize and perform profit analysis
 </code></pre>
 <h2 id="installation-instructions">Installation Instructions</h2>
 <ol>
 <li>
 <p>Pull the project from this github repo: https://github.com/movieData314/CSE314Final </p>
-<p><code>git pull &lt;url&gt;</code> </p>
+<p><code>git pull https://github.com/movieData314/CSE314Final</code> </p>
 </li>
 <li>
 <p>Create conda environment from the included yml file</p>
@@ -221,14 +234,14 @@ sys.path.append(&lt;pathToModule&gt;)
 </li>
 </ol>
 <h2 id="examples">Examples</h2>
-<h3 id="314final_tovicleanipynb">314Final_ToviClean.ipynb</h3>
+<h3 id="cleaning_exampleipynb">Cleaning_Example.ipynb</h3>
 <p>This notebook shows how we clean the dataset so that they are in long form and could be merged with "df.join" syntax. </p>
 <p>The primary diffculty is that multiple features store giant json format strings or list of json strings in a single cell, which violates the first normal form. Meanwhile, the fact that they are python strings adds to the difficulty of this task because python uses both single quote and double quote to wrap a string adeptively but python's json parser only recognizes double quotes. Therefore, we used a theoretical tool called the abstract syntax tree to reformat the string. </p>
-<h3 id="cse314moduletesting">CSE314ModuleTesting</h3>
+<h3 id="moduletesting">ModuleTesting</h3>
 <p>This notebook shows how to do aggregate on dataframes and retrieve the wanted data.</p>
-<h3 id="314final_patrickapi">314Final_PatrickAPI</h3>
+<h3 id="api_example">API_Example</h3>
 <p>This notebook shows examples of retrieving more movie data entries as complement to the existing ones.</p>
-<h3 id="314final_wongrene">314Final_WonGrene</h3>
+<h3 id="genre_example">Genre_Example</h3>
 <p>This notebook shows how we normalize the genre feature for our analysis.</p>
 <h3 id="profit">profit</h3>
 <p>This notebook shows the workflow how we find the most profitable movie genre.</p>
@@ -236,68 +249,90 @@ sys.path.append(&lt;pathToModule&gt;)
 <p><strong>Title: Data Cleaning</strong></p>
 <p><strong>As a</strong> Data Anlyst who just obtained the raw movie data <br />
 <strong>I want</strong>  to clean the raw data <br />
-<strong>So that</strong> the data contains no error and no duplicates and makes sense in the real-life context <br /></p>
+<strong>So that</strong> the data contains no errors and no duplicates and makes sense for real movies <br /></p>
 <p><strong>Scenario</strong> 1: The data should not have complex data structure. <br />
-<strong>Given</strong> a dataset that has columns with json encoded as single strings <br />
+<strong>Given</strong> a dataset that has feature columns (like genre) with json encoded as single strings <br />
 <strong>When</strong> we try to parse these columns <br />
 <strong>Then</strong> the key-value pairs are decoded into a dataframe or series <br /></p>
-<p><strong>Scenario</strong> 2: The numerals in the data should have plausible values <br />
-<strong>Given</strong> a column that represent mony but contains many 0’s <br />
+<p><strong>Scenario</strong> 2: The numerals in the data should have plausible movie feature values <br />
+<strong>Given</strong> a column that represents real values (like budget) but contains many 0’s <br />
 <strong>When</strong> we clean this column <br />
 <strong>Then</strong> 0’s are replaced by not-a-number flag <br /></p>
-<p><strong>Scenario</strong> 3: The data should not have duplicates <br />
+<p><strong>Scenario</strong> 3: The data should not have movie duplicates <br />
 <strong>Given</strong> a dataset that contains exactly the same two rows <br />
 <strong>When</strong> we clean this data <br />
-<strong>Then</strong> duplicate rows are removed and the index is unique <br /></p>
+<strong>Then</strong> duplicate rows (movies) are removed and the index is unique <br /></p>
 <p><strong>Title</strong>: Data Normalization <br /></p>
-<p><strong>As a</strong> data analyst who have cleaned the data <br />
-<strong>I want</strong> rescale the dataset and split it up to form separate files with different gradularity <br />
+<p><strong>As a</strong> data analyst who has cleaned the movie data <br />
+<strong>I want</strong> rescale the dataset and split it up to form separate files with different granularity <br />
 <strong>So that</strong> each file is optimized in size and properly indexed <br /></p>
 <p><strong>Scenario</strong> 1: The index column in files should have the same dtypes <br />
 <strong>Given</strong> two dataframes with the “id” column as the index but one column has strings rather than integers, <br />
-<strong>When</strong> normalize the data, <br />
-<strong>Then</strong> all index columns contains integers <br /></p>
+<strong>When</strong> we normalize the data, <br />
+<strong>Then</strong> all the index columns for the movies contain integers <br /></p>
 <p><strong>Scenario</strong> 2: Each data entry should have unique index<br />
 <strong>Given</strong> a dataframe of movie characters which cannot be identified by movie-id alone,<br />
-<strong>When</strong> we nromalize the data,<br />
+<strong>When</strong> we normalize the data,<br />
 <strong>Then</strong> both movie-id and the name of actor are used as index<br /></p>
 <p><strong>Scenario</strong> 3: Data with its own granularity should be split into a new table,<br />
-<strong>Given</strong> a dataframe of actors that a many-to-many relationship to movie-id<br />
+<strong>Given</strong> a dataframe of actors that is a many-to-many relationship to movie-id<br />
 <strong>When</strong> normalize the data,<br />
 <strong>Then</strong> a junction table for actors and movie-id is separated from rest of the movie data<br /></p>
 <p><strong>Title</strong>: Aggregation<br /></p>
-<p><strong>As a</strong> data analyst who wants to explore the data of interest<br />
+<p><strong>As a</strong> data analyst who wants to explore the movie data<br />
 <strong>I want</strong> to aggregate the tables containing the data we want,<br />
-<strong>So that</strong>: I can calculate correlation and visualize those data<br /></p>
+<strong>So that</strong>: I can calculate correlation and visualize the movie data<br /></p>
 <p><strong>Scenario</strong> 1: Separate tables should be able to be joined together using keys and foreign keys<br />
 <strong>Given</strong> a one-to-many table of genre data and a one-to-one movie info table,<br />
 <strong>When</strong> we merge the tables together,<br />
 <strong>Then</strong> the two tables are joined together based the movie-id column<br /></p>
 <p><strong>Title</strong>: Dashboard<br /></p>
-<p><strong>As a</strong> data analyst who obtain the data for the first time,<br />
+<p><strong>As a</strong> data analyst who obtained the movie data for the first time,<br />
 <strong>I want</strong> to do some quick exploration on the data<br />
 <strong>So that</strong> I have a sense of data about its structure, data types and other aspects<br /></p>
-<p><strong>Scenario</strong> 1: The dashboard app should provides some samples of the data <br />
+<p><strong>Scenario</strong> 1: The dashboard app should provides some samples of the movie data <br />
 <strong>When</strong> we want to look at the data itself,<br />
 <strong>Then</strong> the dashboard samples a small chunk of data from each table present the joined table to the user<br />
 <strong>Then</strong> the user can navigate through the data using scroll bars and buttons<br /></p>
 <p><strong>Scenario</strong> 2: The dashboard app should visualize selected data <br />
 <strong>Given</strong> all the clean data,<br />
-<strong>When</strong> the user selectes two features from the data,<br />
+<strong>When</strong> the user selectes two features (budget, revenue, etc.) from the data,<br />
 <strong>Then</strong> the app decides between a scatter plot or a bar plot to draw based on the data types<br />
 <strong>Then</strong> the app present a plot that allows the user to zoom in with cursor<br /></p>
 <p><strong>Scenario</strong> 3: The dashboard app should calculate the correlation<br />
-<strong>Given</strong> two numerical features selected by the user,<br />
-<strong>When</strong> the user hit the “submit” button,<br />
+<strong>Given</strong> two numerical features (budget, revenue, etc.) selected by the user,<br />
+<strong>When</strong> the user hits the “submit” button,<br />
 <strong>Then</strong> the app presents a table including information such as quartiles and correlations<br /></p>
 <p><strong>Title</strong>: API
 <strong>As a</strong> movie lover 
 <strong>I want</strong> to gather information about recent movies
 <strong>So that</strong> the movie dataset is more complete</p>
-<p><strong>Scenario</strong> 1: The movie api shoud return movies released after 2018
-<strong>When</strong> we request the movies,
-<strong>Then</strong> the api returns a dataframe of the movies details</p>
+<p><strong>Scenario</strong> 1: The TheMovieDB api shoud return movies released after 2017
+<strong>When</strong> we request the movies for TheMovieDB api,
+<strong>Then</strong> the api returns a dataframe of the movie's details</p>
 <h2 id="contributing-guide">Contributing Guide</h2>
+<p>Project made by Yan Zhou, Patrick Lynch, Won Young Kang, Tovi Tu</p>
+<p>First, thanks for for considering contributing to our project! There are many ways you can help out.</p>
+<ol>
+<li>Reporting a bug</li>
+<li>Submitting a fix</li>
+<li>Proposing new features</li>
+</ol>
+<h3 id="report-a-bug">Report a bug</h3>
+<p>If you spot a problem with the docs, report the issue by opening a new <a href="https://github.com/movieData314/CSE314Final">issue</a>. </p>
+<h3 id="make-changes">Make Changes</h3>
+<p>We Use Github <a href="https://docs.github.com/en/get-started/quickstart/github-flow">Flow</a>, So All Code Changes Happen Through Pull Requests.</p>
+<p>When your code is ready to be submitted, <a href="https://github.com/movieData314/CSE314Final/pulls">submit a pull request</a> to begin the code review process.</p>
+<ol>
+<li>Fork the repo and create your branch from <code>main</code>.</li>
+<li>If you've added code that should be tested, add tests.</li>
+<li>If you've changed APIs, update the documentation.</li>
+<li>Issue that pull request!</li>
+</ol>
+<h3 id="license">License</h3>
+<p>By contributing, you agree that your contributions will be licensed under its WUSTL License.</p>
+<h3 id="reference">Reference</h3>
+<p>This document was adapted from the open-source contribution guidelines <a href="https://gist.github.com/briandk/CONTRIBUTING.md">here</a> and also from yahoo <a href="https://yahoo.github.io/oss-guide/docs/publishing/publishing-template/Contributing.html">here</a></p>
               
             </div>
           </div><footer>
@@ -344,5 +379,5 @@ sys.path.append(&lt;pathToModule&gt;)
 
 <!--
 MkDocs version : 1.4.2
-Build Date UTC : 2022-12-19 23:09:02.260815+00:00
+Build Date UTC : 2022-12-21 01:04:07.385360+00:00
 -->

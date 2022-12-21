@@ -61,10 +61,22 @@
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">API</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#API.get_api_data.get_all_movies_2018_plus">get_all_movies_2018_plus</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#API.get_api_data.get_all_movies_2018_plus--get_all_movies_2018_plus">get_all_movies_2018_plus</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#API.get_api_data.get_2018_plus_movie_details">get_2018_plus_movie_details</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#API.get_api_data.get_2018_plus_movie_details--get_2018_plus_movie_details">get_2018_plus_movie_details</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#API.get_api_data.movie_details_to_df">movie_details_to_df</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#API.get_api_data.movie_details_to_df--movie_details_to_df">movie_details_to_df</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#example-cleaning-code">Example Cleaning Code</a>
     </li>
@@ -104,7 +116,8 @@
 <a id="API.get_api_data.get_all_movies_2018_plus"></a>
   <div class="doc doc-contents first">
   
-      <p>Get every available movie from TheMovieDB api with a release_date year of 2018 or newer.</p>
+      <h3 id="API.get_api_data.get_all_movies_2018_plus--get_all_movies_2018_plus">get_all_movies_2018_plus</h3>
+<p>Get every available movie from TheMovieDB api with a release_date year of 2018 or newer.</p>
 
 <details class="note">
   <summary>Note</summary>
@@ -151,8 +164,7 @@
           <td>
                 <code>dict</code>
           </td>
-          <td><p>dict
-A dictionary of all the movies released in 2018 to present.</p></td>
+          <td><p>A dictionary of all the movies released in 2018 to present.</p></td>
         </tr>
     </tbody>
   </table>
@@ -167,7 +179,8 @@ A dictionary of all the movies released in 2018 to present.</p></td>
 <a id="API.get_api_data.get_2018_plus_movie_details"></a>
   <div class="doc doc-contents first">
   
-      <p>Get revenue, budget, and genre information for movies from TheMovieDB api with a release_date year of 2018 or newer.</p>
+      <h3 id="API.get_api_data.get_2018_plus_movie_details--get_2018_plus_movie_details">get_2018_plus_movie_details</h3>
+<p>Get revenue, budget, and genre information for movies from TheMovieDB api with a release_date year of 2018 or newer.</p>
 
 <details class="note">
   <summary>Note</summary>
@@ -224,8 +237,7 @@ A dictionary of all the movies released in 2018 to present.</p></td>
           <td>
                 <code>dict</code>
           </td>
-          <td><p>dict
-A dictionary including the revenue, budget, and genres of of all the movies released in 2018 to present.</p></td>
+          <td><p>A dictionary including the revenue, budget, and genres of of all the movies released in 2018 to present.</p></td>
         </tr>
     </tbody>
   </table>
@@ -240,7 +252,8 @@ A dictionary including the revenue, budget, and genres of of all the movies rele
 <a id="API.get_api_data.movie_details_to_df"></a>
   <div class="doc doc-contents first">
   
-      <p>Convert a dictionary containing revenue, budget, and genre information to a dataframe.</p>
+      <h3 id="API.get_api_data.movie_details_to_df--movie_details_to_df">movie_details_to_df</h3>
+<p>Convert a dictionary containing revenue, budget, and genre information to a dataframe.</p>
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -279,8 +292,7 @@ A dictionary including the revenue, budget, and genres of of all the movies rele
           <td>
                 <code><span title="pandas">pd</span>.<span title="pandas.DataFrame">DataFrame</span></code>
           </td>
-          <td><p>pd.DataFrame
-A dataframe including the revenue, budget, and genres of of all the movies released in 2018 to present.</p></td>
+          <td><p>A dataframe including the revenue, budget, and genres of of all the movies released in 2018 to present.</p></td>
         </tr>
     </tbody>
   </table>
@@ -288,7 +300,7 @@ A dataframe including the revenue, budget, and genres of of all the movies relea
   </div>
 
 </div><h2 id="example-cleaning-code">Example Cleaning Code</h2>
-<p>Go to 314Final_PatrickAPI.ipynb for API function usage examples.</p>
+<p>Go to API_Example.ipynb for API function usage examples.</p>
               
             </div>
           </div><footer>
