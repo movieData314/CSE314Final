@@ -1,4 +1,5 @@
 # CSE314Final
+Welcome to MovieDataset! Our project aims to investigate the correlation between profit and provides tools for easy manipulation of the data and hassle-free preliminary data analysis. We use anaconda to for environment control. Follow the the guide below to get started on your project or our examplery analysis. 
 
 ## Installation Instructions
 
