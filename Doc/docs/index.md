@@ -66,7 +66,7 @@ To help with our analysis, we develop several modules to do cleaning, normalizat
 1. Pull the project from this github repo: https://github.com/movieData314/CSE314Final 
 
     ```
-    git pull <url>
+    git pull https://github.com/movieData314/CSE314Final 
     ``` 
 
 2. Create conda environment from the included yml file

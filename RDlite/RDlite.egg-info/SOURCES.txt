@@ -1,8 +1,0 @@
-setup.py
-RDlite/__init__.py
-RDlite/accessor.py
-RDlite/node.py
-RDlite.egg-info/PKG-INFO
-RDlite.egg-info/SOURCES.txt
-RDlite.egg-info/dependency_links.txt
-RDlite.egg-info/top_level.txt
